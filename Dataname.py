@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint,render_template
 import pymysql
 from Config import *
 
@@ -7,16 +7,15 @@ connection = pymysql.connect(
     user= USER,
     password= PASS,
     database= DATABASE)
-print(DATABASE)
+
 
 dataname = Blueprint('dataname',__name__)
+
 @dataname.route('/showdata')
 def showdata():
     cursor = connection.cursor()
-    cursor.execute("SELECT * FROM customer")
-    row = cursor.fetchone()
-    while row:
-        print (row)
-        row = cursor.fetchone()
-        connection.close()
-    return "sucess"
+    sql = ("SELECT * FROM customer")
+    cursor.execute(sql)
+    row = cursor.fetchall()
+    print(row)
+    return render_template("tablename.html",headername = "รายชื่อ" ,datas = row)
