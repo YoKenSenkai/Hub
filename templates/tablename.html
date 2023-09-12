@@ -17,12 +17,13 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
+                    <th scope="col">ลำดับ</th>
                     <th scope="col">รหัสทรัพย์สิน</th>
                     <th scope="col">แบนด์</th>
                     <th scope="col">หมายเลขเครื่อง</th>
                     <th scope="col">ชื่อ</th>
                     <th scope="col">แผนก</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -33,8 +34,52 @@
                     <td>{{ rows[2] }}</td>
                     <td>{{ rows[3] }}</td>
                     <td>{{ rows[4] }}</td>
-                    <td>{{ rows[5] }}</td>
+                    <td>{{ rows[6] }}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal{{ rows[0] }}">แก้ไข</button>
+                    </td>
                 </tr>
+                <div class="modal fade" id="exampleModal{{ rows[0] }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">แก้ไขข้อมูล</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="ID" class="col-form-label">ลำดับ:</label>
+                                        <input type="text" class="form-control" id="ID" value="{{ rows[0] }}" disabled="disabled">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="name" class="col-form-label">ชื่อ:</label>
+                                        <input type="text" class="form-control" id="fname" value="{{ rows[4] }}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="fname" class="col-form-label">นามสกุล:</label>
+                                        <input type="text" class="form-control" id="lname" value="{{ rows[5] }}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="department" class="col-form-label">แผนก:</label>
+                                        <select class="form-select" id="department" aria-label="Default select example" >
+                                            {% for dm in departments %}
+                                                <option value=""></option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Send message</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {% endfor %}
             </tbody>
         </table>

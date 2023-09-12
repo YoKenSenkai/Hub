@@ -1,12 +1,14 @@
 from flask import Flask,render_template
 from Dataname import *
+from Datadepartment import *
 
 app = Flask(__name__)
 app.register_blueprint(dataname)
+app.register_blueprint(department)
 
 @app.route('/')
-def index():
-    return "Welcome to PM TNP"
+def home():
+    return render_template("navbar.html")
 
 
 if __name__ == '__main__':
