@@ -50,32 +50,32 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form action="{{url_for('dataname.editdata')}}" method="POST">
                                     <div class="mb-3">
                                         <label for="ID" class="col-form-label">ลำดับ:</label>
-                                        <input type="text" class="form-control" id="ID" value="{{ rows[0] }}" disabled="disabled">
+                                        <input type="text" class="form-control" id="ID" name = "ID" value="{{ rows[0] }}" disabled="disabled">
                                     </div>
                                     <div class="mb-3">
                                         <label for="name" class="col-form-label">ชื่อ:</label>
-                                        <input type="text" class="form-control" id="fname" value="{{ rows[4] }}">
+                                        <input type="text" class="form-control" id="fname" name = "fname" value="{{ rows[4] }}">
                                     </div>
                                     <div class="mb-3">
                                         <label for="fname" class="col-form-label">นามสกุล:</label>
-                                        <input type="text" class="form-control" id="lname" value="{{ rows[5] }}">
+                                        <input type="text" class="form-control" id="lname" name = "lname" value="{{ rows[5] }}">
                                     </div>
                                     <div class="mb-3">
                                         <label for="department" class="col-form-label">แผนก:</label>
-                                        <select class="form-select" id="department" aria-label="Default select example" >
+                                        <select class="form-select" id="department" name = "department" aria-label="Default select example" >
                                             {% for dm in departments %}
-                                                <option value=""></option>
+                                                <option value="{{ dm[1] }}">{{ dm[1] }}</option>
                                             {% endfor %}
                                         </select>
                                     </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">อัพเดพข้อมูล</button>
+                                    </div>
                                 </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Send message</button>
                             </div>
                         </div>
                     </div>
