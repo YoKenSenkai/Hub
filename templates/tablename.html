@@ -27,9 +27,9 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                {% for rows in datas %}
+                {% for index, rows in datas %}
                 <tr>
-                    <td>{{ rows[0] }}</td>
+                    <td>{{ index }}</td>
                     <td>{{ rows[1] }}</td>
                     <td>{{ rows[2] }}</td>
                     <td>{{ rows[3] }}</td>
@@ -53,7 +53,7 @@
                                 <form action="{{url_for('dataname.editdata')}}" method="POST">
                                     <div class="mb-3">
                                         <label for="ID" class="col-form-label">ลำดับ:</label>
-                                        <input type="text" class="form-control" id="ID" name = "ID" value="{{ rows[0] }}" disabled="disabled">
+                                        <input type="text" class="form-control" id="ID" name = "ID" value="{{ rows[0] }}" readonly>
                                     </div>
                                     <div class="mb-3">
                                         <label for="name" class="col-form-label">ชื่อ:</label>
@@ -66,9 +66,10 @@
                                     <div class="mb-3">
                                         <label for="department" class="col-form-label">แผนก:</label>
                                         <select class="form-select" id="department" name = "department" aria-label="Default select example" >
-                                            {% for dm in departments %}
-                                                <option value="{{ dm[1] }}">{{ dm[1] }}</option>
-                                            {% endfor %}
+                                            <option selected>----โปรดเลือกแผนก----</option> 
+                                                {% for dm in departments %}
+                                                    <option value="{{ dm[1] }}">{{ dm[1] }}</option>
+                                                {% endfor %}
                                         </select>
                                     </div>
                                     <div class="modal-footer">

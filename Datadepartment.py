@@ -14,7 +14,7 @@ department = Blueprint('department',__name__)
 @department.route('/showdepartment')
 def showdepartment():
     cursor = connection.cursor()
-    sql = ("SELECT * From department")
+    sql = ("SELECT * From dm")
     cursor.execute(sql)
     row = cursor.fetchall()
     return render_template("Department/tabledepartment.html",headername = "แผนก" ,datas = row)
