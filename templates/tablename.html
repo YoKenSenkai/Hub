@@ -38,8 +38,34 @@
                     <td>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#exampleModal{{ rows[0] }}">แก้ไข</button>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#exampleModaleDel{{ rows[4] }}">ลบ</button>
                     </td>
                 </tr>
+
+                <!-- การลบ -->
+                <div class="modal fade" id="exampleModaleDel{{ rows[4] }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">ลบข้อมูล</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form action="{{url_for('dataname.delectdata')}}" method="POST">
+                                <div class="modal-body">
+                                    <h5>ต้องการที่ลบข้อมูล {{ rows[4] }} หรือไม่</h5>
+                                </div>
+                                <input type="hidden" name="fname" value="{{ rows[4] }}">
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">ลบ</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- การแก้ไข -->
                 <div class="modal fade" id="exampleModal{{ rows[0] }}" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
