@@ -19,35 +19,53 @@
                 <tr>
                     <th scope="col">ลำดับ</th>
                     <th scope="col">รหัสทรัพย์สิน</th>
-                    <th scope="col">แบนด์</th>
-                    <th scope="col">หมายเลขเครื่อง</th>
-                    <th scope="col">ram</th>
-                    <th scope="col">memory</th>
-                    <th scope="col">system</th>
-                    <th scope="col">ชื่อ</th>
-                    <th scope="col">status</th>
+                    <th scope="col">แผนก</th>
+                    <th scope="col">ผู้รับผิดชอบ</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                {% for rows in datas %}
+                {% for index, rows in datas %}
                 <tr>
-                    <td>{{ rows[0] }}</td>
+                    <td>{{ index }}</td>
                     <td>{{ rows[1] }}</td>
                     <td>{{ rows[2] }}</td>
                     <td>{{ rows[3] }}</td>
-                    <td>{{ rows[4] }}</td>
-                    <td>{{ rows[5] }}</td>
-                    <td>{{ rows[6] }}</td>
-                    <td>{{ rows[7] }}</td>
-                    <td>{{ rows[8] }}</td>
                     <td>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">แก้ไข</button>
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                             data-bs-target="#exampleModaleDel">ลบ</button>
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                            data-bs-target="#exampleModaleEdit">เพิ่มข้อมูล</button>
                     </td>
                 </tr>
+                <div class="modal fade" id="exampleModaleEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <form action="{{url_for('main.insertdatamaintenace')}}" method="POST">
+                            <div class="mb-3">
+                              <label for="recipient-name" class="col-form-label">Recipient:</label>
+                              <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="mb-3">
+                              <label for="message-text" class="col-form-label">Message:</label>
+                              <textarea class="form-control" id="message-text"></textarea>
+                            </div>
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Send message</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 {% endfor %}
             </tbody>
         </table>
