@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
   {% include "navbar.html" %}
   <div>
@@ -28,18 +29,18 @@
         <tr>
           <td>{{ index }}</td>
           <td>{{ rows[1] }}</td>
-          <td>{{ rows[2] }}</td>
-          <td>{{ rows[3] }}</td>
+          <td>{{ rows[5] }}</td>
+          <td>{{ rows[6] }}</td>
           <td>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
               data-bs-target="#exampleModal">แก้ไข</button>
             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
               data-bs-target="#exampleModaleDel">ลบ</button>
             <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-              data-bs-target="#exampleModaleEdit">PM</button>
+              data-bs-target="#exampleModaleEdit{{ rows[0] }}">PM</button>
           </td>
         </tr>
-        <div class="modal fade" id="exampleModaleEdit" tabindex="-1" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="exampleModaleEdit{{ rows[0] }}" tabindex="-1" aria-labelledby="exampleModalLabel"
           aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -52,104 +53,101 @@
                   <div class="row">
                     <div class="col-md-6">
                       <label for="id" class="col-form-label">ลำดับ:</label>
-                      <input type="text" class="form-control" id="id" name="id">
+                      <input type="text" class="form-control" id="id" name="id" value="{{ rows[0] }}">
                     </div>
                     <div class="col-md-6">
                       <label for="iditem" class="col-form-label">รหัสทรัพย์สิน:</label>
-                      <input type="text" class="form-control" id="iditem" name="iditem">
+                      <input type="text" class="form-control" id="iditem" name="iditem" value="{{ rows[1] }}">
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
                       <label for="ram" class="col-form-label">ram:</label>
-                      <input type="text" class="form-control" id="ram" name="ram">
+                      <input type="text" class="form-control" id="ram" name="ram" value="{{ rows[2] }}">
                     </div>
                     <div class="col-md-6">
                       <label for="memory" class="col-form-label">memory:</label>
-                      <input type="text" class="form-control" id="memory" name="memory">
+                      <input type="text" class="form-control" id="memory" name="memory" value="{{ rows[3] }}">
                     </div>
                   </div>
                   <div class="mb-3">
-                    <label for="department" class="col-form-label">system:</label>
-                    <select class="form-select" id="department" name="department" aria-label="Default select example">
-                      <option selected>----Choose system----</option>
-                      <option value="windows 10">windows 10</option>
-                      <option value="windows 11">windows 11</option>
-                    </select>
+                    <label for="system" class="col-form-label">system:</label>
+                    <input type="text" class="form-control" id="system" name="system" value="{{ rows[4] }}">
                   </div>
                   <div class="mb-3">
-                    <label for="department" class="col-form-label">แผนก:</label>
-                    <select class="form-select" id="department" name="department" aria-label="Default select example">
-                      <option selected>----โปรดเลือกแผนก----</option>
-                      {% for dm in departments %}
-                      <option value="{{ dm[1] }}">{{ dm[1] }}</option>
-                      {% endfor %}
-                    </select>
+                    <label for="fname" class="col-form-label">แผนก:</label>
+                    <input type="text" class="form-control" id="fname" name="fname" value="{{ rows[5] }}">
                   </div>
                   <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">ชื่อ:</label>
-                    <input type="text" class="form-control" id="name">
+                    <label for="department" class="col-form-label">ชื่อ:</label>
+                    <input type="text" class="form-control" id="department" name="department" value="{{ rows[6] }}">
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-                      <label for="recipient-name" class="col-form-label">File:</label>
-                      <input type="text" class="form-control" id="dm">
+                      <label for="File" class="col-form-label">File:</label>
+                      <input type="text" class="form-control" id="File" name="File">
                     </div>
                     <div class="col-md-6">
-                      <label for="recipient-name" class="col-form-label">Temporary:</label>
-                      <input type="text" class="form-control" id="name">
+                      <label for="Temporary" class="col-form-label">Temporary:</label>
+                      <input type="text" class="form-control" id="Temporary" name="Temporary">
                     </div>
-                    <br><br><br><br><label class="col-form-label">Malware</label>
+                  </div><br>
+                  <div class="mb-3">
+                    <label for="Malware" class="form-label"><i class="bi bi-funnel me-2"></i>Malware:</label>
                     <div class="d-flex">
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
-                        <label class="form-check-label" for="flexRadioDefault1">Yes</label>
+                        <input class="form-check-input" type="radio" name="Malware" id="MalwareYes" value="yes">
+                        <label class="form-check-label" for="MalwareYes"><i class="bi bi-check-circle-fill"></i>
+                          Yes</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                        <label class="form-check-label" for="flexRadioDefault2">No</label>
+                        <input class="form-check-input" type="radio" name="Malware" id="MalwareNo" value="no">
+                        <label class="form-check-label" for="MalwareNo"><i class="bi bi-x-circle-fill"></i> No</label>
                       </div>
                     </div>
-                    <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">unit:</label>
-                      <input type="text" class="form-control" id="dm">
-                    </div>
-                    <div class="mb-3">
-                      <label for="backup" class="form-label"><i class="bi bi-funnel me-2"></i>Antivirus</label>
-                      <div class="d-flex">
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="backup" id="backupYes" value="yes">
-                          <label class="form-check-label" for="backupYes"><i class="bi bi-check-circle-fill"></i> Yes</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="backup" id="backupNo" value="no">
-                          <label class="form-check-label" for="backupNo"><i class="bi bi-x-circle-fill"></i> No</label>
-                        </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="unit" class="col-form-label">unit:</label>
+                    <input type="text" class="form-control" id="unit" name="unit">
+                  </div>
+                  <div class="mb-3">
+                    <label for="Antivirus" class="form-label"><i class="bi bi-funnel me-2"></i>Antivirus:</label>
+                    <div class="d-flex">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="Antivirus" id="AntivirusYes" value="yes">
+                        <label class="form-check-label" for="AntivirusYes"><i class="bi bi-check-circle-fill"></i>
+                          Yes</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="Antivirus" id="AntivirusNo" value="no">
+                        <label class="form-check-label" for="AntivirusNo"><i class="bi bi-x-circle-fill"></i> No</label>
                       </div>
                     </div>
-                    <div class="mb-3">
-                      <label for="backup" class="form-label"><i class="bi bi-cloud-arrow-up-fill me-2"></i>Backup</label>
-                      <div class="d-flex">
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="backup" id="backupYes" value="yes">
-                          <label class="form-check-label" for="backupYes"><i class="bi bi-check-circle-fill"></i> Yes</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="backup" id="backupNo" value="no">
-                          <label class="form-check-label" for="backupNo"><i class="bi bi-x-circle-fill"></i> No</label>
-                        </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="backup" class="form-label"><i class="bi bi-cloud-arrow-up-fill me-2"></i>Backup:</label>
+                    <div class="d-flex">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="backup" id="backupYes" value="yes">
+                        <label class="form-check-label" for="backupYes"><i class="bi bi-check-circle-fill"></i>
+                          Yes</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="backup" id="backupNo" value="no">
+                        <label class="form-check-label" for="backupNo"><i class="bi bi-x-circle-fill"></i> No</label>
                       </div>
                     </div>
-                    <div class="mb-3">
-                      <label for="date" class="form-label"><i class="bi bi-calendar3 text-success me-2"></i>Date
-                      </label>
-                      <input type="date" class="form-control" id="date" name="date">
-                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="date" class="form-label"><i class="bi bi-calendar3 text-success me-2"></i>Date
+                    </label>
+                    <input type="date" class="form-control" id="date" name="date">
+                  </div>
 
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Send message</button>
-                    </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">เพิ่มข้อมูล</button>
+                  </div>
                 </form>
               </div>
             </div>
