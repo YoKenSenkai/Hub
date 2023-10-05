@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  {% include "index/navbar.html" %}
+  <div>
+    <h1 class="d-flex justify-content-center">{{headername}}</h1>
+  </div>
+
+  <div class="container justify-content-center">
+    <form action="{{url_for('datahistory.showdate')}}" method="POST">
+      <div class="row">
+        <div class="col-auto">
+          <input type="date" class="form-control" name="dtstart" id="dtstart">
+        </div>
+        <div class="col-auto">
+          <input type="date" class="form-control" name="dtend" id="dtend">
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary">แสดงข้อมูล</button>
+        </div>
+        <div class="col-auto">
+          <a href="/showhistory" class="btn btn-success">แสดงทั้งหมด</a>
+        </div>
+      </div>
+    </form>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ลำดับ</th>
+          <th scope="col">รหัสทรัพย์สิน</th>
+          <th scope="col">แผนก</th>
+          <th scope="col">ผู้รับผิดชอบ</th>
+          <th scope="col">วันที่ล่าสุด</th>
+          <th scope="col">รายละเอียด</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        {% for rows in datas %}
+        <tr>
+          <td>{{ rows[0] }}</td>
+          <td>{{ rows[2] }}</td>
+          <td>{{ rows[3] }}</td>
+          <td>{{ rows[4] }}</td>
+          <td>{{ rows[11] }}</td>
+          <td>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+              data-bs-target="#exampleModal">รายละเอียด</button>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {{ pagination.links }}
+  </div>
+</body>
+
+</html>

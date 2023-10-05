@@ -8,12 +8,13 @@
 </head>
 
 <body>
-  {% include "navbar.html" %}
+  {% include "index/navbar.html" %}
   <div>
     <h1 class="d-flex justify-content-center">{{headername}}</h1>
   </div>
 
   <div class="container justify-content-center">
+    
     <table class="table">
       <thead>
         <tr>
@@ -21,7 +22,12 @@
           <th scope="col">รหัสทรัพย์สิน</th>
           <th scope="col">แผนก</th>
           <th scope="col">ผู้รับผิดชอบ</th>
-          <th scope="col"></th>
+          <th scope="col">
+            <div>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+              data-bs-target="#exampleModal">ประวัติ</button>
+            </div>
+          </th>
         </tr>
       </thead>
       <tbody class="table-group-divider">
@@ -32,14 +38,33 @@
           <td>{{ rows[5] }}</td>
           <td>{{ rows[6] }}</td>
           <td>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-              data-bs-target="#exampleModal">แก้ไข</button>
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-              data-bs-target="#exampleModaleDel">ลบ</button>
             <button type="button" class="btn btn-warning" data-bs-toggle="modal"
               data-bs-target="#exampleModaleEdit{{ rows[0] }}">PM</button>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+              data-bs-target="#exampleModaleDel">ลบ</button>
           </td>
         </tr>
+
+        <!-- link -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ประวัติ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>ประวัติข้อมูลหรือข้อมูลเพิ่มเติม</p>
+                <a href="{{url_for('datahistory.showhistory')}}">หน้าเพจประวัติ</a>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PM -->
         <div class="modal fade" id="exampleModaleEdit{{ rows[0] }}" tabindex="-1" aria-labelledby="exampleModalLabel"
           aria-hidden="true">
           <div class="modal-dialog">
@@ -75,12 +100,12 @@
                     <input type="text" class="form-control" id="system" name="system" value="{{ rows[4] }}">
                   </div>
                   <div class="mb-3">
-                    <label for="fname" class="col-form-label">แผนก:</label>
-                    <input type="text" class="form-control" id="fname" name="fname" value="{{ rows[5] }}">
+                    <label for="department" class="col-form-label">แผนก:</label>
+                    <input type="text" class="form-control" id="department" name="department" value="{{ rows[5] }}">
                   </div>
                   <div class="mb-3">
-                    <label for="department" class="col-form-label">ชื่อ:</label>
-                    <input type="text" class="form-control" id="department" name="department" value="{{ rows[6] }}">
+                    <label for="fname" class="col-form-label">ชื่อ:</label>
+                    <input type="text" class="form-control" id="fname" name="fname" value="{{ rows[6] }}">
                   </div>
                   <div class="row">
                     <div class="col-md-6">

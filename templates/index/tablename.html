@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    {% include "navbar.html" %}
+    {% include "index/navbar.html" %}
     <div>
         <h1 class="d-flex justify-content-center">{{headername}}</h1>
     </div>
@@ -39,7 +39,7 @@
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#exampleModal{{ rows[0] }}">แก้ไข</button>
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                            data-bs-target="#exampleModaleDel{{ rows[4] }}">ลบ</button>
+                            data-bs-target="#exampleModaleDel{{ rows[4] }}">ปิดการใช้งาน</button>
                     </td>
                 </tr>
 
@@ -48,17 +48,17 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">ลบข้อมูล</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">ปิดการใช้งาน</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <form action="{{url_for('dataname.delectdata')}}" method="POST">
                                 <div class="modal-body">
-                                    <h5>ต้องการที่ลบข้อมูล {{ rows[4] }} หรือไม่</h5>
+                                    <h5>ต้องการที่ปิดการใช้งาน {{ rows[4] }} หรือไม่</h5>
                                 </div>
                                 <input type="hidden" name="fname" value="{{ rows[4] }}">
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">ลบ</button>
+                                    <button type="submit" class="btn btn-primary">ปิด</button>
                                 </div>
                             </form>
                         </div>

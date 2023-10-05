@@ -25,7 +25,7 @@ def showdata():
     cursor.execute(sql2)
     department = cursor.fetchall()
 
-    return render_template("tablename.html",headername = "รายชื่อ" ,datas = rownumber, departments = department)
+    return render_template("index/tablename.html",headername = "รายชื่อ" ,datas = rownumber, departments = department)
 
 @dataname.route('/editdata',methods=["POST"])
 def editdata():
@@ -45,7 +45,7 @@ def editdata():
 
         return redirect('/showdata')
     
-    return render_template("tablename.html")
+    return render_template("index/tablename.html")
 
 @dataname.route('/delectdata',methods=["POST"])
 def delectdata():
@@ -59,4 +59,4 @@ def delectdata():
 
         return redirect('/showdata')
     
-    return render_template("tablename.html")
+    return render_template("index/tablename.html")
